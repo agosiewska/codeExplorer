@@ -12,7 +12,10 @@ Imports: stringr,
     dplyr,
     shiny,
     plotly,
-    tidyr
+    tidyr,
+    gtools,
+    factoextra,
+    FactoMineR
 Suggests: testthat,
     knitr
 VignetteBuilder: knitr

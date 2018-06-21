@@ -112,4 +112,31 @@ function(input,output) {
     if(length(ids) == 3) return( plot_assignments(summarized_files(), summarized_files1(), summarized_files2(), summarized_files3()))
   })
   
+  
+  selected_libs <- reactive({
+    input$PCAlib
+  })
+  selected_fun <- reactive({
+    input$PCAfun
+  })
+  selected_len <- reactive({
+    input$PCAlen
+  })
+  selected_nam <- reactive({
+    input$PCAnam
+  })
+  
+  output$codePCA <- renderPlot({
+    selected_libs()
+    if(selected_libs() == TRUE) libs <- "libraries" else libs <- NULL
+    if(selected_fun() == TRUE) fun <- "functions" else fun <- NULL
+    if(selected_len() == TRUE) len <- "mean_length_var" else len <- NULL
+    if(selected_nam() == TRUE) nam <- "naming" else nam <- NULL
+    variables <- c(libs, fun, len, nam)
+    ############ TO DO zrobic elegancko
+    if(length(ids) == 1) return( plot_codePCA(summarized_files(), summarized_files1(), variables = variables))
+    if(length(ids) == 2) return( plot_codePCA(summarized_files(), summarized_files1(), summarized_files2(), variables = variables))
+    if(length(ids) == 3) return( plot_codePCA(summarized_files(), summarized_files1(), summarized_files2(), summarized_files3(), variables = variables))
+  })
+  
 }

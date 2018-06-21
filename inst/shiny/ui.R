@@ -54,8 +54,13 @@ navbarPage("codeExplorer",
            tabPanel("PCA",
                     sidebarLayout(
                       sidebarPanel(
+                        checkboxInput("PCAlib", "Libraries", value = TRUE, width = NULL),
+                        checkboxInput("PCAfun", "Functions", value = TRUE, width = NULL),
+                        checkboxInput("PCAlen", "Mean length of variable name", value = TRUE, width = NULL),
+                        checkboxInput("PCAnam", "Naming convention", value = TRUE, width = NULL)
                       ),
                       mainPanel(
+                        plotOutput("codePCA")
                       )
                     )
            ),
