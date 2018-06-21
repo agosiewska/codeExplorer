@@ -1,0 +1,18 @@
+Package: codeExplorer
+Title: Text exploration of code
+Version: 0.0.1
+Authors@R: person("Alicja", "Gosiewska", email = "alicjagosiewska@gmail.com", role = c("aut", "cre"))
+Description: Summrizes code.
+Depends: R (>= 3.0)
+License: GPL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: stringr,
+    dplyr,
+    shiny,
+    plotly,
+    tidyr
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr

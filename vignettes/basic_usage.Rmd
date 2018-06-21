@@ -1,0 +1,92 @@
+---
+title: "Basics"
+author: "Alicja Gosiewska"
+date: "20 czerwca 2018"
+output: html_document
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Introduction into model audit}
+  %\usepackage[UTF-8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(codeExplorer)
+```
+
+
+```{r}
+code1<- c("library(proton)", 
+          "", 
+          "proton()", 
+          "", 
+          "Login <- employees[employees$surname == \"Insecure\",]", 
+          "proton(action = \"login\", login = \"johnins\")", 
+          "", 
+          "pass <- top1000passwords", 
+          "for (i in 1:1000) proton(action = \"login\", login=\"johnins\", password=pass[i])", 
+          "", "", "Login_p <- employees[employees$surname == \"Pietraszko\",]", 
+          "logi_p <- logs[logs$login==\"slap\",]", "hosts<-as.data.frame(table(logi_p$host))", 
+          "proton(action = \"server\", host=\"194.29.178.16\")", 
+          "", 
+          "", 
+          "bash <- bash_history", "commends<-sub(\" .*\", \"\", bash)", 
+          "commends <- as.data.frame(commends)", 
+          "commends_p <- commends[commends$commends==\"ps\"]", 
+          "bash[53]")
+
+code2<- c("library(proton)", 
+          "", 
+          "proton()", 
+          "", 
+          "Login = employees[employees$surname == \"Insecure\",]", 
+          "proton(action = \"login\", login = \"johnins\")", 
+          "", 
+          "pass <- top1000passwords", 
+          "for (i in 1:1000) proton(action = \"login\", login=\"johnins\", password=pass[i])", 
+          "", "", "Login_p <- employees[employees$surname == \"Pietraszko\",]", 
+          "logi.p <- logs[logs$login==\"slap\",]", "hosts<-as.data.frame(table(logi_p$host))", 
+          "proton(action = \"server\", host=\"194.29.178.16\")", 
+          "", 
+          "", 
+          "bash <- bash_history", "commends<-sub(\" .*\", \"\", bash)", 
+          "commends <- as.data.frame(commends)", 
+          "commends_p <- commends[commends$commends==\"ps\"]", 
+          "bash[53]")
+
+
+```
+
+```{r}
+extract_libraries(code1)
+```
+
+```{r}
+extract_arrow_assignments(code1)
+```
+
+```{r}
+summarize_notation(extract_arrow_assignments(code1)$variables)
+```
+
+
+```{r}
+extract_equality_assignments(code1)
+```
+
+```{r}
+extract_functions(code1)
+```
+
+```{r}
+sumcod <- summarize_code(code1, code1, label = "my codes", code_names = c("code1","code2"))
+sumcod
+```
+
+```{r}
+plot_libraries(sumcod, sumcod <- summarize_code(code1, code1, label = "also my codes"))
+```
+
